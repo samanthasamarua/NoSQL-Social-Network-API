@@ -84,7 +84,6 @@ async getUserById(req, res) {
       if (!deletedUser) {
         return res.status(404).json({ error: 'User not found' });
       }
-      // If bonus criteria is applicable, remove associated thoughts here
       res.json({ message: 'User deleted successfully' });
     } catch (error) {
       console.error('Error deleting user:', error);
