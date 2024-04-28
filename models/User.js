@@ -4,14 +4,14 @@ const { Schema, model } = require('mongoose');
 // Define the schema for the User model
 const userSchema = new Schema({
 
-// Define the username field
+  // Define the username field
   username: {
     type: String,
     unique: true, // Ensures username is unique
     required: true, // Username is required
     trim: true 
   },
-// Define the email field
+  // Define the email field
   email: {
     type: String,
     required: true, // Ensure email is required
@@ -34,6 +34,13 @@ const userSchema = new Schema({
       ref: 'User'
     }
   ]
+}, 
+
+{
+  toJSON: {
+    virtuals: true
+  },
+  id: false
 });
 
 // Define virtual for friendCount

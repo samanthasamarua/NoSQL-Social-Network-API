@@ -1,11 +1,11 @@
 // Imports the schema, model and mongoose objects from the mongoose package
-const { Schema, model, mongoose } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 // Imports the Reaction model
 const Reaction = require('./Reaction')
 
 // Mongoose schema - Defines the structure of the Thought document
-const ThoughtSchema = new mongoose.Schema(
+const ThoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
