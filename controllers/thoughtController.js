@@ -1,6 +1,4 @@
-const { Thought, User, Reaction } = require('../models');
-const {Types} = require('mongoose');
-
+const { Thought, User } = require('../models');
 
 const thoughtController = {
     // GET all thoughts
@@ -19,9 +17,11 @@ const thoughtController = {
     const { thoughtId } = req.params;
     try {
       const thought = await Thought.findById(thoughtId);
+
       if (!thought) {
         return res.status(404).json({ error: 'Thought not found' });
       }
+
       res.json(thought);
     } catch (error) {
       console.error('Error fetching thought by id:', error);
@@ -84,7 +84,7 @@ const thoughtController = {
         { new: true }
       );
       if (!updatedThought) {
-        return res.status(404).json({ error: 'Thought not found' });
+        return res.status(404).json({ error: 'Unable to find thought' });
       }
       res.json(updatedThought);
     } catch (error) {
@@ -101,9 +101,11 @@ const thoughtController = {
         { $pull: { reactions: { reactionId } } },
         { new: true }
       );
+
       if (!updatedThought) {
         return res.status(404).json({ error: 'Thought not found' });
       }
+      
       res.json(updatedThought);
     } catch (error) {
       console.error('Error deleting reaction:', error);
